@@ -22,6 +22,19 @@
                         </div>
                         
                         {{-- Action Buttons --}}
+                            <div class="flex items-center gap-2">
+                                
+                                {{-- Memanggil Komponen Edit --}}
+                                @can('update', $product)
+                                    <x-edit-button :url="route('product.edit', $product)" />
+                                @endcan
+
+                                {{-- Memanggil Komponen Delete --}}
+                                @can('delete', $product)
+                                    <x-delete-button :action="route('product.delete', $product->id)" />
+                                @endcan
+                                
+                            </div>
                         <div class="flex items-center gap-2">
                             
                             {{-- Tombol Edit dibungkus Policy --}}

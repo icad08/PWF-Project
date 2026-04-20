@@ -1,2 +1,2 @@
 ## Validasi
-![alt text](image-2.png)
+![alt text](image/image-2.png)
