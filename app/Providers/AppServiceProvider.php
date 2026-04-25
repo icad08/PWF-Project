@@ -13,6 +13,10 @@ class AppServiceProvider extends ServiceProvider
         // Definisikan Gate
         Gate::define('manage-product', function (User $user) {
             return $user->role === 'admin';
+        // gate hanya admin yang bisa manage category
+        });
+        Gate::define('manage-category', function (User $user) {
+            return $user->role === 'admin';
         });
     }
 }

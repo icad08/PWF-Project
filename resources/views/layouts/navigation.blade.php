@@ -16,6 +16,13 @@
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
                         {{ __('Products') }}
                     </x-nav-link>
+
+                    {{-- Tambahan Menu Category (Khusus Admin) --}}
+                    @can('manage-category')
+                        <x-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
+                            {{ __('Category') }}
+                        </x-nav-link>
+                    @endcan
                 </div>
             </div>
 
@@ -71,6 +78,13 @@
             <x-responsive-nav-link :href="route('product.index')" :active="request()->routeIs('product.*')">
                 {{ __('Products') }}
             </x-responsive-nav-link>
+
+            {{-- Tambahan Menu Category Responsive (Khusus Admin) --}}
+            @can('manage-category')
+                <x-responsive-nav-link :href="route('category.index')" :active="request()->routeIs('category.*')">
+                    {{ __('Category') }}
+                </x-responsive-nav-link>
+            @endcan
         </div>
 
         <div class="pt-4 pb-1 border-t border-gray-200">

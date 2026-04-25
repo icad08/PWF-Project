@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -29,11 +30,12 @@ class ProductController extends Controller
     }
 
     public function create()
-    {
-        $users = User::orderBy('name')->get();
+{
+    $categories = Category::all(); // Ambil semua kategori
+    $users = User::all();
+    return view('product.create', compact('categories'));
+}
 
-        return view('product.create', compact('users'));
-    }
 
     public function show($id)
     {
@@ -53,15 +55,14 @@ class ProductController extends Controller
 
         return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
-
-    public function edit(Product $product)
-    {   
-        Gate::authorize('update', $product);
-        $users = User::orderBy('name')->get();
-
-        return view('product.edit', compact('product', 'users'));
-    }
-
+     public function edit(Product $product)
+        {
+            Gate::authorize('update', $product);
+            
+            $categories = Category::all(); // Ambil semua kategori
+            $users = User::all();
+            return view('product.edit', compact('product', 'categories'));
+        }
     public function delete($id)
     {
         $product = Product::findOrFail($id);
